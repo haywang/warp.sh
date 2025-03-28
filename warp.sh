@@ -262,7 +262,7 @@ Init_WARP_Client() {
     if [[ ${WARP_Client_SelfStart} != enabled || ${WARP_Client_Status} != active ]]; then
         Install_WARP_Client
     fi
-    if [[ $(warp-cli --accept-tos account) = *Missing* ]]; then
+    if [[ $(warp-cli --accept-tos status) = *Missing* ]]; then
         log INFO "Cloudflare WARP Account Registration in progress..."
         warp-cli --accept-tos register
     fi
@@ -272,19 +272,19 @@ Connect_WARP() {
     log INFO "Connecting to WARP..."
     warp-cli --accept-tos connect
     log INFO "Enable WARP Always-On..."
-    warp-cli --accept-tos enable-always-on
+    warp-cli --accept-tos always-on
 }
 
 Disconnect_WARP() {
     log INFO "Disable WARP Always-On..."
-    warp-cli --accept-tos disable-always-on
+    warp-cli --accept-tos always-off
     log INFO "Disconnect from WARP..."
     warp-cli --accept-tos disconnect
 }
 
 Set_WARP_Mode_Proxy() {
     log INFO "Setting up WARP Proxy Mode..."
-    warp-cli --accept-tos set-mode proxy
+    warp-cli --accept-tos mode proxy
 }
 
 Enable_WARP_Client_Proxy() {
