@@ -264,7 +264,7 @@ Init_WARP_Client() {
     fi
     if [[ $(warp-cli --accept-tos status) = *Missing* ]]; then
         log INFO "Cloudflare WARP Account Registration in progress..."
-        warp-cli --accept-tos register
+        warp-cli --accept-tos registration
     fi
 }
 
@@ -272,12 +272,12 @@ Connect_WARP() {
     log INFO "Connecting to WARP..."
     warp-cli --accept-tos connect
     log INFO "Enable WARP Always-On..."
-    warp-cli --accept-tos always-on
+    # warp-cli --accept-tos always-on
 }
 
 Disconnect_WARP() {
     log INFO "Disable WARP Always-On..."
-    warp-cli --accept-tos always-off
+    # warp-cli --accept-tos always-off
     log INFO "Disconnect from WARP..."
     warp-cli --accept-tos disconnect
 }
